@@ -1,5 +1,5 @@
 package com.epam.izh.rd.online.service;
-
+import java.util.Arrays;
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,7 +13,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        if (value1 < value2) {
+            return -1;
+        } else {
+            if (value1 > value2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
 
     /**
@@ -22,7 +30,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+
+        if (value1>value2){
+            return value1;
+        }
+        else {
+            return value2;
+        }
     }
 
     /**
@@ -31,7 +45,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int max=0;
+        for (int i=0; i < values.length;i++){
+           if (values[i] > max) {
+              max=values[i];
+           }
+        }
+        return max;
     }
 
     /**
@@ -40,7 +60,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int summa=0;
+        for (int i=0; i < values.length;i++){
+            summa += values[i] ;
+        }
+        return summa;
     }
 
     /**
@@ -49,7 +73,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int n=0;
+        for (int i=0; i< values.length; i++){
+            if (values [i]%2==0){
+                n++;
+            }
+        }
+        int result []= new int [n];
+        int k=0;
+        for (int i=0; i< values.length; i++){
+            if (values [i]%2==0){
+                result [k]=values[i];
+                k++;
+            }
+        }
+        return result;
     }
 
     /**
@@ -59,7 +97,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int factorial=1;
+        for (int i=1; i<=initialVal; i++)
+        {
+            factorial *=i;
+        };
+        if (initialVal==0) factorial=1;
+        return factorial;
     }
 
     /**
@@ -74,7 +118,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        int fibonacci [] = new int [number+1];
+        if (number == 0) return 0;
+        fibonacci [0] =0;
+        fibonacci [1] =1;
+        for (int i=0; i<(number-1); i++)
+        {
+            fibonacci[i+2]=fibonacci[i+1]+fibonacci[i];
+        }
+        return fibonacci[number];
     }
 
     /**
@@ -83,7 +135,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        Arrays.sort(values);
+        return values;
     }
 
     /**
@@ -94,7 +147,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        for (int i=2; i<number; i++){
+            if (number%i==0) return false;
+        }
+       return true;
     }
 
     /**
@@ -104,6 +160,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int array [] = new int [values.length];
+        for (int i=0; i< values.length; i++)
+        {
+            array[values.length-i-1]=values[i];
+        }
+        return array;
     }
 }
